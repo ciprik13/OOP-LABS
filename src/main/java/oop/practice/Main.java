@@ -7,74 +7,56 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Main {
   public static void main(String[] args) throws IOException {
-
-//    Creature creature1 = new Creature("Zaphod Beeblebrox", "Betelgeusian", "Hitchhikers");
-//    Creature creature2 = new Creature("Luke Skywalker", "Human", "Star Wars");
-//    Creature creature3 = new Creature("Frodo Baggins", "Hobbit", "Lord of the Rings");
-//
-//    creature1.printCreatureInfo();
-//    creature2.printCreatureInfo();
-//    creature3.printCreatureInfo();
-//
-//    creature1.setUniverse("Hitchhikers");
-//    creature1.printCreatureInfo();
-
-    Read.main(null);
 
     ObjectMapper mapper = new ObjectMapper();
     File inputFile = new File("src/main/resources/test-input.json");
     JsonNode data = mapper.readTree(inputFile).get("data");
 
-    Universe starWars = new Universe("starWars", new ArrayList<>());
-    Universe hitchhikers = new Universe("hitchHiker", new ArrayList<>());
-    Universe marvel = new Universe("marvel", new ArrayList<>());
-    Universe rings = new Universe("rings", new ArrayList<>());
+    System.out.println("Original JSON data from file:");
+    System.out.println(data.toPrettyString());
 
-
-    System.out.println("Classify the creatures manually to their Universe");
-    Scanner scanner = new Scanner(System.in);
+    // list to store Creature objects - container for internal class
+    List<Creature> creatures = new ArrayList<>();
 
     for (JsonNode entry : data) {
-      String entryAsString = entry.toString();
-      System.out.println(entryAsString);
-      String userInput = scanner.nextLine();
-      switch (userInput) {
-        case "1":
-          starWars.individuals().add(entry);
-          break;
-        case "2":
-          hitchhikers.individuals().add(entry);
-          break;
-        case "3":
-          marvel.individuals().add(entry);
-          break;
-        case "4":
-          rings.individuals().add(entry);
-          break;
-        default:
-          System.out.println("Invalid input");
+      String name = entry.has("name") ? entry.get("name").asText() : "Unknown";
+      String species = entry.has("species") ? entry.get("species").asText() : "Unknown";
+      String universe = entry.has("planet") ? entry.get("planet").asText() : "Unknown";
+      int age = entry.has("age") ? entry.get("age").asInt() : 0;
+      boolean isHumanoid = entry.has("isHumanoid") ? entry.get("isHumanoid").asBoolean() : false;
+      List<String> traits = new ArrayList<>();
+
+      if (entry.has("traits")) {
+        for (JsonNode trait : entry.get("traits")) {
+          traits.add(trait.asText());
+        }
+      }
+
+      //  Creature instance and add to list - map JSON data to class
+      Creature creature = new Creature(name, species, universe, age, isHumanoid, traits);
+      creatures.add(creature);
+    }
+
+    System.out.println("\nCreatures with even IDs:");
+    for (int i = 0; i < data.size(); i++) {
+      if (i % 2 == 0) {
+        System.out.println(data.get(i).toPrettyString());
       }
     }
 
-    scanner.close();
-
-    File outputDir = new File("src/main/resources/output");
-    if (!outputDir.exists()) {
-      outputDir.mkdirs();  // create the directory if it does not exist
+    System.out.println("\nCreatures with odd IDs:");
+    for (int i = 0; i < data.size(); i++) {
+      if (i % 2 != 0) {
+        System.out.println(data.get(i).toPrettyString());
+      }
     }
-
-    mapper.writeValue(new File("src/main/resources/output/starwars.json"), starWars);
-    mapper.writeValue(new File("src/main/resources/output/hitchhiker.json"), hitchhikers);
-    mapper.writeValue(new File("src/main/resources/output/rings.json"), rings);
-    mapper.writeValue(new File("src/main/resources/output/marvel.json"), marvel);
   }
 }
 
 record Universe(
-    String name,
-    List<JsonNode> individuals
+        String name,
+        List<JsonNode> individuals
 ) { }
