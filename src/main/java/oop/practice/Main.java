@@ -11,6 +11,19 @@ import java.util.Scanner;
 
 public class Main {
   public static void main(String[] args) throws IOException {
+
+
+    Creature creature1 = new Creature("Zaphod Beeblebrox", "Betelgeusian", "Hitchhikers");
+    Creature creature2 = new Creature("Luke Skywalker", "Human", "Star Wars");
+    Creature creature3 = new Creature("Frodo Baggins", "Hobbit", "Lord of the Rings");
+
+    creature1.printCreatureInfo();
+    creature2.printCreatureInfo();
+    creature3.printCreatureInfo();
+
+    creature1.setUniverse("Hitchhikers");
+    creature1.printCreatureInfo();
+
     ObjectMapper mapper = new ObjectMapper();
     File inputFile = new File("src/main/resources/test-input.json");
     JsonNode data = mapper.readTree(inputFile).get("data");
@@ -23,8 +36,8 @@ public class Main {
     Scanner scanner = new Scanner(System.in);
 
     for (JsonNode entry : data) {
-      String entryAsString = entry.toString();
-      System.out.println(entryAsString);
+      //String entryAsString = entry.toString();
+      //System.out.println(entryAsString);
       String userInput = scanner.nextLine();
       switch (userInput) {
         case "1":
