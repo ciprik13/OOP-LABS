@@ -3,7 +3,7 @@ package oop.practice;
 import java.util.List;
 
 public class Creature {
-    private int id;  // Adăugăm id-ul creaturii
+    private int id;
     private String name;
     private String species;
     private String universe;

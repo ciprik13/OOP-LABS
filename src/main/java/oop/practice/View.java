@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class View {
-
+// todo make this static
     private ObjectMapper mapper;
 
     public View() {
