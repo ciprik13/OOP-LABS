@@ -1,10 +1,10 @@
 package oop.practice.lab1.Task1;
 
 public class Display {
-    int width;
-    int height;
-    float ppi;
-    String model;
+    private int width;
+    private int height;
+    private float ppi;
+    public String model;
 
     public Display(int width, int height, float ppi, String model) {
         this.width = width;
