@@ -1,4 +1,4 @@
-package oop.practice.lab2.Task2;
+package oop.practice.lab2.Task3;
 
 public class Coffee {
 
@@ -31,5 +31,11 @@ public class Coffee {
 
     public void printCoffeeDetails() {
         System.out.println("Coffee Intensity: " + coffeeIntensity);
+    }
+
+    public void makeCoffee(){
+        printCoffeeDetails();
+        System.out.println("Making "+ getName());
+        System.out.println("Set intensity to "+ getCoffeeIntensity());
     }
 }
