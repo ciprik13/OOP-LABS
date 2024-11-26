@@ -27,8 +27,15 @@ public class Cappuccino extends Coffee {
         System.out.println(getName() + " milk: " + mlOfMilk + " ml");
     }
 
-    public void makeCappuccino(){
-        super.makeCoffee();
+    @Override
+    public void make(){
+        super.make();
         System.out.println("Adding " + getMlOfMilk() + " ml of milk");
+    }
+
+    public Cappuccino makeCappuccino(){
+        System.out.println("Making " + getName());
+        this.make();
+        return this;
     }
 }

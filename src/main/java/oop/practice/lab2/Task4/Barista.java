@@ -8,6 +8,9 @@ import java.util.List;
                 if (coffee != null) {
                     System.out.println("\n===");
                     switch (order.toLowerCase()) {
+                        case "coffee":
+                            ((Coffee) coffee).makeCoffee();
+                            break;
                         case "cappuccino":
                             ((Cappuccino) coffee).makeCappuccino();
                             break;
@@ -32,6 +35,8 @@ import java.util.List;
 
     private Coffee takeOrder(String order){
         switch (order.toLowerCase()){
+            case "coffee":
+                return new Coffee(Coffee.Intensity.STRONG);
             case "cappuccino":
                 return new Cappuccino(Coffee.Intensity.NORMAL, 25);
             case "americano":

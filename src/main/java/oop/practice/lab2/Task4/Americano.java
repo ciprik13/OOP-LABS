@@ -27,8 +27,15 @@ public class Americano extends Coffee {
         System.out.println(getName() + " water: " + mlOfWater + " ml");
     }
 
-    public void makeAmericano(){
-        super.makeCoffee();
-        System.out.println("Adding " + getMlOfWater() + " ml of water");
+    @Override
+    public void make(){
+        super.make();
+        System.out.println("Adding " + getMlOfWater() + "mg of pumpkin spice");
+    }
+
+    public Americano makeAmericano(){
+        System.out.println("Making " + getName());
+        this.make();
+        return this;
     }
 }

@@ -34,8 +34,11 @@ public class Coffee {
     }
 
     public void makeCoffee(){
-        printCoffeeDetails();
-        System.out.println("Making "+ getName());
+        System.out.println("Making !"+ getName() + "!");
+        make();
+    }
+
+    protected void make(){
         System.out.println("Set intensity to "+ getCoffeeIntensity());
     }
 }
