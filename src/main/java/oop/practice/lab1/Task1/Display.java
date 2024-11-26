@@ -44,11 +44,8 @@ public class Display {
 
     // Compare size and sharpness
     public void compareWithMonitor(Display m) {
-        String sizeComparison = compareSize(m);
-        String sharpnessComparison = compareSharpness(m);
-
         System.out.println("Comparison between " + this.model + " and " + m.model + ":");
-        System.out.println(sizeComparison);
-        System.out.println(sharpnessComparison);
+        System.out.println(compareSize(m));
+        System.out.println(compareSharpness(m));
     }
 }
