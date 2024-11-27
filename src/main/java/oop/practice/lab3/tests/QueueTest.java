@@ -1,5 +1,9 @@
-package oop.practice.lab3;
+package oop.practice.lab3.tests;
 
+import oop.practice.lab3.ArrayQueue;
+import oop.practice.lab3.LinkedQueue;
+import oop.practice.lab3.Queue;
+import oop.practice.lab3.VectorQueue;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
