@@ -1,5 +1,5 @@
 package oop.practice.lab3;
 
 public interface Refuelable {
-    void refuel(String carID);
+    void refuel(int carID, int consumption);
 }
