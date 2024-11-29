@@ -1,10 +1,10 @@
 package oop.practice.lab3.tests;
 
 import oop.practice.lab3.*;
+import oop.practice.lab3.Queue;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.*;
-import java.util.Queue;
 
 public class SemaphoreTest {
 
@@ -12,20 +12,20 @@ public class SemaphoreTest {
     public void testSemaphoreRoutingAndStats() {
         Dineable gasPeopleDinner = new PeopleDinner();
         Refuelable gasStationService = new GasStation();
-        Queue<Car> gasPeopleQueue = new LinkedList<>();
+        Queue<Car> gasPeopleQueue = new LinkedQueue<>();
         CarStation gasPeopleStation = new CarStation(gasPeopleDinner, gasStationService, gasPeopleQueue);
 
         Dineable gasRobotDinner = new RobotDinner();
-        Queue<Car> gasRobotQueue = new LinkedList<>();
+        Queue<Car> gasRobotQueue = new LinkedQueue<>();
         CarStation gasRobotStation = new CarStation(gasRobotDinner, gasStationService, gasRobotQueue);
 
         Dineable electricPeopleDinner = new PeopleDinner();
         Refuelable electricStationService = new ElectricStation();
-        Queue<Car> electricPeopleQueue = new LinkedList<>();
+        Queue<Car> electricPeopleQueue = new LinkedQueue<>();
         CarStation electricPeopleStation = new CarStation(electricPeopleDinner, electricStationService, electricPeopleQueue);
 
         Dineable electricRobotDinner = new RobotDinner();
-        Queue<Car> electricRobotQueue = new LinkedList<>();
+        Queue<Car> electricRobotQueue = new LinkedQueue<>();
         CarStation electricRobotStation = new CarStation(electricRobotDinner, electricStationService, electricRobotQueue);
 
         Semaphore semaphore = new Semaphore(
@@ -35,10 +35,10 @@ public class SemaphoreTest {
                 electricRobotStation
         );
 
-        semaphore.routeCar(new Car("1", "GAS", "PEOPLE", true, 40));
-        semaphore.routeCar(new Car("2", "GAS", "ROBOTS", false, 50));
-        semaphore.routeCar(new Car("3", "ELECTRIC", "PEOPLE", true, 60));
-        semaphore.routeCar(new Car("4", "ELECTRIC", "ROBOTS", false, 55));
+        semaphore.routeCar(new Car(1, "GAS", "PEOPLE", true, 40));
+        semaphore.routeCar(new Car(2, "GAS", "ROBOTS", false, 50));
+        semaphore.routeCar(new Car(3, "ELECTRIC", "PEOPLE", true, 60));
+        semaphore.routeCar(new Car(4, "ELECTRIC", "ROBOTS", false, 55));
 
         semaphore.serveCar();
 

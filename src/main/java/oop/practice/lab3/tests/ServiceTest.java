@@ -11,8 +11,8 @@ public class ServiceTest {
         Dineable peopleDinner = new PeopleDinner();
         Dineable robotDinner = new RobotDinner();
 
-        peopleDinner.serveDinner("1");
-        robotDinner.serveDinner("2");
+        peopleDinner.serveDinner(1);
+        robotDinner.serveDinner(2);
 
         assertEquals(1, ((PeopleDinner) peopleDinner).getPeopleServed());
         assertEquals(1, ((RobotDinner) robotDinner).getRobotsServed());
@@ -23,8 +23,8 @@ public class ServiceTest {
         Refuelable electricStation = new ElectricStation();
         Refuelable gasStation = new GasStation();
 
-        electricStation.refuel("3");
-        gasStation.refuel("4");
+        electricStation.refuel(3,30);
+        gasStation.refuel(4,20);
 
         assertEquals(1, ((ElectricStation) electricStation).getElectricCarsServed());
         assertEquals(1, ((GasStation) gasStation).getGasCarsServed());
