@@ -30,23 +30,23 @@ public class Semaphore {
         String type = car.getType();
         String passengerType = car.getPassengerType();
 
-        if (car.getType() == "GAS" && car.getPassengerType() == "PEOPLE"){
+        if ("GAS".equals(type) && "PEOPLE".equals(passengerType)){
             gasPeopleStation.addCar(car);
             carTypeCount.put("GAS", carTypeCount.get("GAS") + 1);
             passengerTypeCount.put("PEOPLE", passengerTypeCount.get("PEOPLE")+ 1);
         }
-        if (car.getType() == "GAS" && car.getPassengerType() == "ROBOTS"){
-            gasPeopleStation.addCar(car);
+        if ("GAS".equals(type) && "ROBOTS".equals(passengerType)){
+            gasRobotStation.addCar(car);
             carTypeCount.put("GAS", carTypeCount.get("GAS") + 1);
             passengerTypeCount.put("ROBOTS", passengerTypeCount.get("ROBOTS") + 1);
         }
-        if (car.getType() == "ELECTRIC" && car.getPassengerType() == "PEOPLE"){
-            gasPeopleStation.addCar(car);
+        if ("ELECTRIC".equals(type) && "PEOPLE".equals(passengerType)){
+            electricPeopleStation.addCar(car);
             carTypeCount.put("ELECTRIC", carTypeCount.get("ELECTRIC") + 1);
             passengerTypeCount.put("PEOPLE", passengerTypeCount.get("PEOPLE")+ 1);
         }
-        if (car.getType() == "ELECTRIC" && car.getPassengerType() == "ROBOTS"){
-            gasPeopleStation.addCar(car);
+        if ("ELECTRIC".equals(type) && "ROBOTS".equals(passengerType)){
+            electricRobotStation.addCar(car);
             carTypeCount.put("ELECTRIC", carTypeCount.get("ELECTRIC") + 1);
             passengerTypeCount.put("ROBOTS", passengerTypeCount.get("ROBOTS") + 1);
         }
@@ -71,8 +71,8 @@ public class Semaphore {
         stats.put("GAS cars served", carTypeCount.getOrDefault("GAS", 0));
         stats.put("PEOPLE are served", passengerTypeCount.getOrDefault("PEOPLE", 0));
         stats.put("ROBOTS are served", passengerTypeCount.getOrDefault("ROBOTS", 0));
-        stats.put("Is Dining", isDiningCount);
-        stats.put("Is not Dining", isNotDiningCount);
+        stats.put("DINING cars", isDiningCount);
+        stats.put("NON-DINING cars", isNotDiningCount);
         return stats;
 
     }

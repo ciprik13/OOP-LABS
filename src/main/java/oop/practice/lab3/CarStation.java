@@ -1,7 +1,5 @@
 package oop.practice.lab3;
 
-import java.util.Queue;
-
 public class CarStation {
     private Dineable diningService;
     private Refuelable refuelingService;
@@ -16,26 +14,23 @@ public class CarStation {
     }
 
     public void addCar(Car car) {
-        queue.add(car);
+        queue.push(car);
     }
 
     public void serveCars() {
         while (!queue.isEmpty()) {
-            Car car = queue.poll();
+            Car car = queue.pop();
 
-            // Serve dinner if necessary
             if (car.isDining()) {
                 diningService.serveDinner(car.getId());
             }
 
-            // Refuel the car
-            refuelingService.refuel(car.getId());
+            refuelingService.refuel(car.getId(), car.getConsumption());
 
-            // Update counters based on passenger type
-            if (car.getPassengerType().equals("PEOPLE")) {
-                peopleCounter++;
+            if ("PEOPLE".equals(car.getPassengerType())) {
+                PeopleDinner.countPeople();
             } else if (car.getPassengerType().equals("ROBOTS")) {
-                robotCounter++;
+                RobotDinner.countRobot();
             }
         }
     }
